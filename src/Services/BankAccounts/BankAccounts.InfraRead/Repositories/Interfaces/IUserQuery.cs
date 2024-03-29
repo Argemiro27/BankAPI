@@ -2,7 +2,7 @@
 
 namespace BankAccounts.InfraRead.Repositories.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserQuery
     {
         Task<UserModel> GetByIdAsync(int id);
 
@@ -10,7 +10,6 @@ namespace BankAccounts.InfraRead.Repositories.Interfaces
 
         Task<UserModel> GetByUsernameAsync(string username);
 
-        Task<bool> DeleteAsync(UserModel userToDelete);
 
     }
 }

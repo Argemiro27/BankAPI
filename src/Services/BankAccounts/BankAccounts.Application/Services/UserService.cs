@@ -1,16 +1,19 @@
 ﻿using BankAccounts.Application.Services.Interfaces;
 using BankAccounts.Domains.Entities;
 using BankAccounts.InfraRead.Repositories.Interfaces;
+using BankAccounts.InfraWrite.Repositories.Interfaces;
 
 namespace BankAccounts.Application.Services
 {
     public class UserService : IUserService
     {
-        private IUserRepository _userRepository;
+        private IUserQuery _userQuery;
+        private IUserCommand _userCommand;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserQuery userQuery, IUserCommand userCommand)
         {
-            _userRepository = userRepository;
+            _userQuery = userQuery;
+            _userCommand = userCommand;
         }
 
         public UserModel Create(UserModel user)
@@ -20,8 +23,8 @@ namespace BankAccounts.Application.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            UserModel userToDelete = await _userRepository.GetByIdAsync(id);
-            return await _userRepository.DeleteAsync(userToDelete);
+            UserModel userToDelete = await _userQuery.GetByIdAsync(id);
+            return await _userCommand.DeleteAsync(userToDelete);
         }
 
         public IEnumerable<UserModel> Get()

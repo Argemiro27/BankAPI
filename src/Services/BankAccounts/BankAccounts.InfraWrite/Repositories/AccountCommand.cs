@@ -1,28 +1,29 @@
-﻿
-using BankAccounts.Domains;
+﻿using BankAccounts.Domains;
 using BankAccounts.Domains.Entities;
-using BankAccounts.InfraRead.Repositories.Interfaces;
+using BankAccounts.InfraWrite.Repositories.Interfaces;
 
-namespace BankAccounts.InfraRead.Repositories
+namespace BankAccounts.InfraWrite.Repositories
 {
-    public class AuthRepository : IAuthRepository
+    public class AccountCommand : IAccountCommand
     {
         private readonly BankAccountsDbContext _dbContext;
 
-        public AuthRepository (BankAccountsDbContext dbContext)
+        public AccountCommand(BankAccountsDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public async Task<UserModel> Create(UserModel user)
+
+        public async Task<AccountModel> Create(AccountModel account)
         {
             // Adiciona o usuário ao contexto do banco de dados
-            var newUser = _dbContext.Users.Add(user);
+            var newAccount = _dbContext.Accounts.Add(account);
 
             // Salva as mudanças no banco de dados e aguarda a conclusão
             await _dbContext.SaveChangesAsync();
 
             // Retorna o UserModel adicionado
-            return newUser.Entity;
+            return newAccount.Entity;
         }
+
     }
 }

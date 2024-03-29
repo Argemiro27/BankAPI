@@ -4,20 +4,28 @@ using BankAccounts.Domains;
 using Microsoft.EntityFrameworkCore;
 using BankAccounts.InfraRead.Repositories.Interfaces;
 using BankAccounts.InfraRead.Repositories;
+using BankAccounts.InfraWrite.Repositories;
+using BankAccounts.InfraWrite.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAccountService, AccountService>();
+
+builder.Services.AddScoped<IAccountQuery, AccountQuery>();
+builder.Services.AddScoped<IUserQuery, UserQuery>();
+
+builder.Services.AddScoped<IAccountCommand, AccountCommand>();
+builder.Services.AddScoped<IAuthCommand, AuthCommand>();
+builder.Services.AddScoped<IUserCommand, UserCommand>();
+
 
 builder.Services.AddEntityFrameworkSqlServer()
     .AddDbContext<BankAccountsDbContext>(

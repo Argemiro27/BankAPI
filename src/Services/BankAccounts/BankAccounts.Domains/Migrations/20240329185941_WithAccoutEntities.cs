@@ -5,7 +5,7 @@
 namespace BankAccounts.Domains.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class WithAccoutEntities : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,14 +33,14 @@ namespace BankAccounts.Domains.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ClientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<long>(type: "bigint", nullable: false),
-                    DocNumber = table.Column<long>(type: "bigint", nullable: false),
-                    AccountNumber = table.Column<long>(type: "bigint", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DocNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    AccountNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     AccountType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AccountStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AccountPass = table.Column<long>(type: "bigint", nullable: false),
-                    CardNumber = table.Column<long>(type: "bigint", nullable: false),
-                    AccountBalance = table.Column<double>(type: "float", nullable: false)
+                    AccountPass = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CardNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    AccountBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {

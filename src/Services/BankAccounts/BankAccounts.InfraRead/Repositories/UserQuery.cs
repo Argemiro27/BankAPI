@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BankAccounts.InfraRead.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserQuery : IUserQuery
     {
         private readonly BankAccountsDbContext _dbContext;
 
-        public UserRepository(BankAccountsDbContext dbContext)
+        public UserQuery(BankAccountsDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -17,22 +17,15 @@ namespace BankAccounts.InfraRead.Repositories
         {
             try
             {
-                UserModel resultado = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+                UserModel resultado = await _dbContext.Users.FirstOrDefaultAsync(y => y.Email == email);
 
-                if (resultado == null)
-                {
-                    throw new Exception("User not found in the database.");
-                }
-
+                // Caso o usuário não exista, retornará null.
                 return resultado;
             }
             catch (Exception ex)
             {
-                // Log the exception
-                Console.WriteLine($"Exception occurred: {ex}");
-
                 // Rethrow the exception or handle it appropriately based on your application's logic
-                throw;
+                throw ex;
             }
         }
 
@@ -42,32 +35,8 @@ namespace BankAccounts.InfraRead.Repositories
             {
                 UserModel resultado = await _dbContext.Users.FirstOrDefaultAsync(x => x.Username == username);
 
-                if(resultado == null)
-                {
-                    throw new Exception("Ocorreu um erro ao tentar buscar o usuário no banco de dados!");
-                }
+                // Caso o usuário não exista, retornará null.
                 return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async Task<bool> DeleteAsync(UserModel userToDelete)
-        {
-            try
-            {
-
-                _dbContext.Users.Remove(userToDelete);
-                var resultado = await _dbContext.SaveChangesAsync();
-
-                if(resultado == null)
-                {
-                    throw new Exception("Não foi possível excluir o contato no banco de dados!");
-                }
-
-                return true;
             }
             catch (Exception ex)
             {
@@ -85,7 +54,6 @@ namespace BankAccounts.InfraRead.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ocorreu um erro de banco de dados: {ex.Message}");
                 throw ex;
             }
         }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankAccounts.Domains.Migrations
 {
     [DbContext(typeof(BankAccountsDbContext))]
-    [Migration("20240325000553_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240329185941_WithAccoutEntities")]
+    partial class WithAccoutEntities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,14 +32,17 @@ namespace BankAccounts.Domains.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountId"));
 
-                    b.Property<double>("AccountBalance")
-                        .HasColumnType("float");
+                    b.Property<decimal>("AccountBalance")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("AccountNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
-                    b.Property<long>("AccountPass")
-                        .HasColumnType("bigint");
+                    b.Property<string>("AccountPass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountStatus")
                         .IsRequired()
@@ -49,18 +52,23 @@ namespace BankAccounts.Domains.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("CardNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("ClientName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("DocNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("DocNumber")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
 
-                    b.Property<long>("PhoneNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

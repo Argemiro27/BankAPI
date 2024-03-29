@@ -5,14 +5,14 @@ namespace BankAccounts.Application.Services.Interfaces
 {
     public interface IAccountService
     {
-        IEnumerable<AccountModel> Get();
+        //IEnumerable<AccountModel> Get();
 
-        AccountModel GetById(int id);
+        //Task<AccountModel> GetById(int id);
 
-        AccountModel Create(AccountModel user);
+        Task<AccountModel> Create(AccountModel account);
 
-        AccountModel Update(int id, AccountModel user);
+        //Task<AccountModel> Update(int id, AccountModel user);
 
-        void Delete(int id);
+        //void Delete(int id);
     }
 }

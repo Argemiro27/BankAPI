@@ -21,6 +21,8 @@ namespace BankAccounts.Domains
                 .HasForeignKey(a => a.UserId);       // A chave estrangeira em AccountModel é UserId
 
             base.OnModelCreating(modelBuilder);
+
+
         }
     }
 }

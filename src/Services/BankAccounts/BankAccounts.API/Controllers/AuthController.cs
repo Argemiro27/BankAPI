@@ -26,7 +26,7 @@ namespace BankAccounts.API.Controllers
             {
                 if (string.IsNullOrEmpty(email) && string.IsNullOrEmpty(senha)) { throw new Exception("É obrigatório informar algum valor!"); }
 
-                Task<LoginDTO> resultado = _authService.Get(email, senha);
+                LoginDTO resultado = await _authService.Get(email, senha);
 
                 if(resultado == null) { throw new Exception("Ocorreu um erro ao tentar fazer login!"); }
 

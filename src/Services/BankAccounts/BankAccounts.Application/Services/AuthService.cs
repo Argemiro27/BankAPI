@@ -2,6 +2,7 @@
 using BankAccounts.Application.Services.Interfaces;
 using BankAccounts.Domains.Entities;
 using BankAccounts.InfraRead.Repositories.Interfaces;
+using BankAccounts.InfraWrite.Repositories.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,12 +13,17 @@ namespace BankAccounts.Application.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IAuthRepository _authRepository;
-        public AuthService(IAuthRepository authRepository, IUserRepository userRepository)
+        private readonly IUserQuery _userQuery;
+        private readonly IUserCommand _userCommand;
+        private readonly IAuthCommand _authCommand;
+        public AuthService(IUserQuery userQuery,
+                            IUserCommand userCommand, 
+                            IAuthCommand authCommand)
         {
-            _authRepository = authRepository;
-            _userRepository = userRepository;
+            _userQuery = userQuery;
+            _userCommand = userCommand;
+            _authCommand = authCommand;
+
         }
 
         public async Task<LoginDTO> Get(string email, string senha)
@@ -25,7 +31,7 @@ namespace BankAccounts.Application.Services
             try
             {
                 // Verificar se o usuário existe, recupera o usuário
-                UserModel dadosUsuario = await _userRepository.GetByEmailAsync(email);
+                UserModel dadosUsuario = await _userQuery.GetByEmailAsync(email);
 
                 if (dadosUsuario == null) { throw new Exception("Nenhum usuário foi encontrado com o email informado!"); }
 
@@ -33,7 +39,7 @@ namespace BankAccounts.Application.Services
 
                 if (!await passwordsMatch) { throw new Exception("Credenciais informadas são inválidas!"); }
 
-                string secretKey = GenerateSecretKey(10);
+                string secretKey = GenerateSecretKey(80);
                 string authToken = GenerateJwtToken(dadosUsuario.Username, dadosUsuario.Email, dadosUsuario.UserId, secretKey);
 
                 LoginDTO infoLogin = new LoginDTO
@@ -53,7 +59,7 @@ namespace BankAccounts.Application.Services
             try
             {
 
-                var checkUsername = await _userRepository.GetByUsernameAsync(user.Username);
+                UserModel checkUsername = await _userQuery.GetByUsernameAsync(user.Username);
 
                 // Verificar se o usuário já existe
                 if (checkUsername != null)
@@ -68,7 +74,7 @@ namespace BankAccounts.Application.Services
                 // Verificar se o token foi gerado
                 if (passwordHashed == null) { throw new Exception("Geração de token mal-sucedido!"); }
 
-                var result = await _authRepository.Create(user);
+                var result = await _authCommand.Register(user);
 
                 // Verificar se o banco retornou ok à consulta
                 if (result == null) { throw new Exception("Erro ao cadastrar usuário no banco de dados! "); }

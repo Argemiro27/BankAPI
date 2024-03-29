@@ -1,11 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankAccounts.Domains.Entities
 {
@@ -22,20 +16,23 @@ namespace BankAccounts.Domains.Entities
 
         public string ClientName { get; set; }
 
-        public long PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; } // Alterado para string para lidar com diferentes formatos de números
 
-        public long DocNumber { get; set; }
+        [StringLength(11)] // Definindo o tamanho do CPF
+        public string DocNumber { get; set; } // Alterado para string para lidar com diferentes formatos e evitar perda de zeros à esquerda
 
-        public long AccountNumber { get; set; }
+        [StringLength(16)] // Definindo o tamanho do número da conta
+        public string AccountNumber { get; set; } // Alterado para string para lidar com formatos que incluem zeros à esquerda
 
         public string AccountType { get; set; }
 
         public string AccountStatus { get; set; }
 
-        public long AccountPass { get; set; }
+        public string AccountPass { get; set; } // Alterado para string para armazenar senhas de forma segura
 
-        public long CardNumber { get; set; }
+        [StringLength(16)] // Definindo o tamanho do número do cartão
+        public string CardNumber { get; set; } // Alterado para string para lidar com formatos que incluem zeros à esquerda e evitar perda de precisão em números longos
 
-        public double AccountBalance { get; set; }
+        public decimal AccountBalance { get; set; } // Alterado para decimal para valores monetários
     }
 }
