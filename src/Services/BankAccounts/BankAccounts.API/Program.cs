@@ -48,4 +48,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Configure CORS policy to allow any origin, method, and header.
+app.UseCors(options =>
+{
+    options.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 app.Run();

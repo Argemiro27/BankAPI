@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E70D0F47-8204-42BB-8C41-99B5C9C5B71F}"
+	ProjectSection(SolutionItems) = preProject
+		src\docker-compose.yml = src\docker-compose.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4D521CA3-EA84-4B1E-AFFB-B3DEAA2930D1}"
 EndProject
@@ -12,6 +15,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2EFD0AA6-78C4-454C-929B-F79C9F56EC28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BankAccounts", "BankAccounts", "{6FFA8222-D4C4-4D7D-9172-106692A3D446}"
+	ProjectSection(SolutionItems) = preProject
+		src\Services\BankAccounts\Dockerfile = src\Services\BankAccounts\Dockerfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transactions", "Transactions", "{1DB35644-F953-4E5C-90A1-8B43DDCEEFF3}"
 EndProject
@@ -19,25 +25,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccounts.API", "src\Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.API", "src\Services\Transactions\Transactions.API\Transactions.API.csproj", "{57D4CAFF-92DA-40B9-9E3E-63153B6DB8CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccounts.Application", "src\Services\BankAccounts\BankAccounts.Application\BankAccounts.Application.csproj", "{A19F9859-7C38-40C3-8CF2-663FA52B0141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccounts.Application", "src\Services\BankAccounts\BankAccounts.Application\BankAccounts.Application.csproj", "{A19F9859-7C38-40C3-8CF2-663FA52B0141}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccounts.InfraWrite", "src\Services\BankAccounts\BankAccounts.InfraWrite\BankAccounts.InfraWrite.csproj", "{3FBD29FA-F303-4792-8E0C-D7A1E85B46F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccounts.InfraWrite", "src\Services\BankAccounts\BankAccounts.InfraWrite\BankAccounts.InfraWrite.csproj", "{3FBD29FA-F303-4792-8E0C-D7A1E85B46F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccounts.Domains", "src\Services\BankAccounts\BankAccounts.Domains\BankAccounts.Domains.csproj", "{C14F402E-14FD-4164-A65F-36134D613E84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccounts.Domains", "src\Services\BankAccounts\BankAccounts.Domains\BankAccounts.Domains.csproj", "{C14F402E-14FD-4164-A65F-36134D613E84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Application", "src\Services\Transactions\Transactions.Application\Transactions.Application.csproj", "{60A00ED9-377F-4A07-AC36-4F4034A60D77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Application", "src\Services\Transactions\Transactions.Application\Transactions.Application.csproj", "{60A00ED9-377F-4A07-AC36-4F4034A60D77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Domains", "src\Services\Transactions\Transactions.Domains\Transactions.Domains.csproj", "{3A30CE56-EB56-4693-9C75-ACE3BE1E2027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Domains", "src\Services\Transactions\Transactions.Domains\Transactions.Domains.csproj", "{3A30CE56-EB56-4693-9C75-ACE3BE1E2027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.InfraRead", "src\Services\Transactions\Transactions.InfraRead\Transactions.InfraRead.csproj", "{DA85737A-85D6-4C18-AFA0-3FAFFFB93031}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.InfraRead", "src\Services\Transactions\Transactions.InfraRead\Transactions.InfraRead.csproj", "{DA85737A-85D6-4C18-AFA0-3FAFFFB93031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.InfraWrite", "src\Services\Transactions\Transactions.InfraWrite\Transactions.InfraWrite.csproj", "{13576DC3-DF20-4BA2-8F13-98599D730877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.InfraWrite", "src\Services\Transactions\Transactions.InfraWrite\Transactions.InfraWrite.csproj", "{13576DC3-DF20-4BA2-8F13-98599D730877}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Tests", "src\Services\Transactions\Transactions.Tests\Transactions.Tests.csproj", "{DEF77EC1-9107-4CA7-BAAA-46EE022EA53B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Tests", "src\Services\Transactions\Transactions.Tests\Transactions.Tests.csproj", "{DEF77EC1-9107-4CA7-BAAA-46EE022EA53B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccounts.Tests", "src\Services\BankAccounts\BankAccounts.Tests\BankAccounts.Tests.csproj", "{74534150-73EC-4E72-8A1B-497212AA0853}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccounts.Tests", "src\Services\BankAccounts\BankAccounts.Tests\BankAccounts.Tests.csproj", "{74534150-73EC-4E72-8A1B-497212AA0853}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccounts.InfraRead", "src\Services\BankAccounts\BankAccounts.InfraRead\BankAccounts.InfraRead.csproj", "{E6F2CED8-52BA-49D5-A7D6-CCF9E782F9D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccounts.InfraRead", "src\Services\BankAccounts\BankAccounts.InfraRead\BankAccounts.InfraRead.csproj", "{E6F2CED8-52BA-49D5-A7D6-CCF9E782F9D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

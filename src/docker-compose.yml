@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  bankaccounts:
+    # imagem na AWS
+    #image: -
+    container_name: api-accounts
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      ASPNETCORE_URLS: "http://+:80"
+    networks:
+      - docker_mynetwork
+    ports:
+      - 12000:80
+    restart: always
+
+networks:
+  docker_mynetwork:
+    external: true

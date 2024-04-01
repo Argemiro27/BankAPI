@@ -26,11 +26,11 @@ namespace BankAccounts.API.Controllers
             {
                 if (string.IsNullOrEmpty(email) && string.IsNullOrEmpty(senha)) { throw new Exception("É obrigatório informar algum valor!"); }
 
-                LoginDTO resultado = await _authService.Get(email, senha);
+                LoginDTO dadosUsuarioLogado = await _authService.Get(email, senha);
 
-                if(resultado == null) { throw new Exception("Ocorreu um erro ao tentar fazer login!"); }
+                if(dadosUsuarioLogado == null) { throw new Exception("Ocorreu um erro ao tentar fazer login!"); }
 
-                return Ok(resultado);
+                return Ok(dadosUsuarioLogado);
             }catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao logar com o usuário: {ex.Message}");
